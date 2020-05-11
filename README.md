@@ -46,9 +46,14 @@ at http://cloc.sourceforge.net/ since August 2006.
 # [Quick Start &#9650;](#___top "click to go to top of document")
 
 Step 1:  Download cloc (several methods, see below) or run cloc's 
-[docker image](#Docker-).  The Windows executable has no requirements.
+[docker image](#Docker-1).  The Windows executable has no requirements.
 The source version of cloc requires a Perl interpreter, and the
 Docker version of cloc requires a Docker installation.
+````
+下载cloc（几种方法，见下文）或运行cloc的 
+[docker image](#Docker-)。 Windows的可执行文件没有任何要求。
+cloc的源代码版本需要一个Perl解释器，而Docker版本的cloc需要安装Docker。
+````
 
 Step 2:  Open a terminal (`cmd.exe` on Windows).
 
@@ -59,8 +64,13 @@ development source version (`cloc`), source for a
 released version (`cloc-1.82.pl`) or a Windows executable
 (`cloc-1.82.exe`).  On this page, `cloc` is the generic term
 used to refer to any of these.
+````
+调用cloc来统计你的源文件、目录、存档或 git 提交。
+可执行的名称不同，这取决于你是否使用开发源码版本cloc、源码为一个发布的版本 cloc-1.82.pl 或 Windows的可执行文件cloc-1.82.exe。 
+本页中的 cloc是通用术语。用于指代其中的任何一个。
+````
 
-**a file**
+** 一个文件 **
 <pre>
 prompt> cloc hello.c
        1 text file.
@@ -75,7 +85,7 @@ C                                1              0              7              5
 -------------------------------------------------------------------------------
 </pre>
 
-**a directory**
+** 一个目录 **
 <pre>
 prompt> cloc gcc-5.2.0/gcc/c
       16 text files.
@@ -93,7 +103,7 @@ SUM:                            13           4779           6907          31308
 -------------------------------------------------------------------------------
 </pre>
 
-**an archive**
+** 档案馆 **
 
 We'll pull cloc's source zip file from GitHub, then count the contents:
 <pre>
@@ -110,7 +120,7 @@ SUM:                             2            725           1103           8713
 -------------------------------------------------------------------------------
 </pre>
 
-**a git repository, using a specific commit**
+** 一个git仓库，使用一个特定的提交 **
 
 This example uses code from
 <a href=https://pypi.python.org/pypi/pudb>PuDB</a>, a fantastic Python debugger.
@@ -139,11 +149,10 @@ SUM:                            34           1538            736           4761
 
 </pre>
 
-**each subdirectory of a particular directory**
+** 特定目录的每个子目录 **
 
-Say you have a directory with three different git-managed projects,
-Project0, Project1, and Project2.  You can use your shell's looping
-capability to count the code in each.  This example uses bash:
+假设你有一个目录，里面有三个不同的git管理的项目，Project0、Project1和Project2。你可以使用你的shell的循环功能来计算每个项目中的代码。
+This example uses bash:
 <pre>
 prompt> for d in ./*/ ; do (cd "$d" && echo "$d" && cloc --vcs git); done
 ./Project0/
@@ -194,7 +203,7 @@ SUM:                            39           1564           1365           3945
 
 [](1}}})
 <a name="Overview"></a>      []({{{1)
-# [Overview &#9650;](#___top "click to go to top of document")
+# [综述 &#9650;](#___top "click to go to top of document")
 
 Translations:
 [Arabic](http://www.garciniacambogiareviews.ca/translations/aldanial-cloc/),
@@ -246,14 +255,12 @@ http://softwareestimator.com/IndustryData2.htm.
 [](1}}})
 
 <a name="Docker"></a> []({{{1)
-## Run via docker
+## 通过docker运行
 ```shell
 docker run --rm -v $PWD:/tmp aldanial/cloc
 ```
-## Install via package manager
-Depending your operating system, one of these installation methods may
-work for you (all but the last two entries for Windows require
-a Perl interpreter):
+## 通过软件包管理器安装
+根据你的操作系统，这些安装方法中的一种可能对你有用（除了Windows的最后两个项目外，其他所有的项目都需要Perl解释器）:
 
     npm install -g cloc                    # https://www.npmjs.com/package/cloc
     sudo apt install cloc                  # Debian, Ubuntu
@@ -268,17 +275,14 @@ a Perl interpreter):
     choco install cloc                     # Windows with Chocolatey
     scoop install cloc                     # Windows with Scoop
 
-**Note**: I don't control any of these packages.
-If you encounter a bug in cloc using one of the above
-packages, try with cloc pulled from the latest stable release here
-on github (link follows below) before submitting a problem report.
+**Note**: 我不控制这些软件包。如果你在使用上述软件包中遇到cloc的bug，请在提交问题报告之前，先用github上的最新稳定版的cloc来尝试（链接如下）。
 [](1}}})
 <a name="Stable"></a> []({{{1)
-## Stable release
+## 稳定版
 https://github.com/AlDanial/cloc/releases/latest
 
 <a name="Dev"></a>
-## Development version
+## 开发版
 https://github.com/AlDanial/cloc/raw/master/cloc
 [](1}}})
 <a name="License"></a> []({{{1)
@@ -295,23 +299,24 @@ Perl modules is subject to the
 <a name="why_use"></a> []({{{1)
 # [Why Use cloc? &#9650;](#___top "click to go to top of document")
 
-cloc has many features that make it easy to use, thorough, extensible, and portable:
+cloc有许多功能，使其易于使用、彻底、可扩展和便携:
 
-1.  Exists as a single, self-contained file that requires minimal installation effort---just download the file and run it.
-2.  Can read language comment definitions from a file and thus potentially work with computer languages that do not yet exist.
-3.  Allows results from multiple runs to be summed together by language and by project.
-4.  Can produce results in a variety of formats: plain text, SQL, JSON, XML, YAML, comma separated values.
-5.  Can count code within compressed archives (tar balls, Zip files, Java .ear files).
-6.  Has numerous troubleshooting options.
-7.  Handles file and directory names with spaces and other unusual characters.
-8.  Has no dependencies outside the standard Perl distribution.
-9.  Runs on Linux, FreeBSD, NetBSD, OpenBSD, Mac OS X, AIX, HP-UX, Solaris, IRIX, and z/OS systems that have Perl 5.6 or higher. The source version runs on Windows with either ActiveState Perl, Strawberry Perl, Cygwin, or MobaXTerm+Perl plugin. Alternatively on Windows one can run the Windows binary which has no dependencies.
+1.  以一个独立的文件形式存在，只需下载文件并运行即可。
+2.  可以从文件中读取语言注释定义，从而有可能使用还不存在的计算机语言。
+3.  允许按语言和项目对多个运行结果进行汇总。
+4.  可以产生多种格式的结果。纯文本、SQL、JSON、JSON、XML、YAML、逗号分隔值。
+5.  可以对压缩后的压缩文件（tar balls, Zip files, Java .ear files）中的代码进行统计。
+6.  具有众多的故障排除选项。
+7.  处理带空格和其他不正常字符的文件和目录名。
+8.  没有标准的Perl发行版之外的依赖性。
+9.  可以在 Linux, FreeBSD, NetBSD, OpenBSD, Mac OS X, AIX, HP-UX, Solaris, IRIX, 和 z/OS 系统上运行，并支持 Perl 5.6 或更高版本。源版本可以在Windows上运行，可以使用ActiveState Perl、Strawberry Perl、Cygwin或MobaXTerm+Perl插件。也可以在Windows系统上运行Windows二进制，它没有任何依赖性。
+
 [](1}}})
 
 <a name="Other_Counters"></a> []({{{1)
 # [Other Counters &#9650;](#___top "click to go to top of document")
 
-If cloc does not suit your needs here are other freely available counters to consider:
+如果cloc不适合你的需求，这里有其他免费的计数器可以考虑:
 
 *   [loc](https://github.com/cgag/loc/)
 *   [gocloc](https://github.com/hhatto/gocloc/)
@@ -323,7 +328,7 @@ If cloc does not suit your needs here are other freely available counters to con
 *   [tokei](https://github.com/Aaronepower/tokei/)
 *   [Unified Code Count](http://csse.usc.edu/ucc_new/wordpress/)
 
-Other references:
+其他参考资料:
 
 *   QSM's [directory](http://www.qsm.com/CodeCounters.html) of code counting tools.
 *   The [Wikipedia entry](http://en.wikipedia.org/wiki/Source_lines_of_code) for source code line counts.
@@ -359,7 +364,7 @@ The Windows binary is built on a computer that has both Regexp::Common
 and Digest::MD5 installed locally.
 [](1}}})
 <a name="building_exe"></a> []({{{1)
-# [Building a Windows Executable &#9650;](#___top "click to go to top of document")
+# [构建一个Windows可执行文件 &#9650;](#___top "click to go to top of document")
 
 The Windows downloads
 <tt>cloc-1.70.exe</tt> and
@@ -393,21 +398,14 @@ before passing it to perl2exe; lines 87 and 88 were uncommented:
 <font color="gray">88</font>  <font color="red">#$HAVE_Rexexp_Common = 1;</font>
 </pre>
 
-#### Is the Windows executable safe to run?  Does it have malware?
+#### Windows的可执行文件可以安全运行吗？ 它是否有恶意软件？
 
-Ideally, no one would need the Windows executable because they
-have a Perl interpreter installed on their machines and can
-run the cloc source file.
-On centrally-managed corporate Windows machines, however, this
-this may be difficult or impossible.
+理想情况下，没有人需要Windows可执行文件，因为他们的机器上安装了Perl解释器，可以运行cloc源文件。
+但是，在集中管理的企业Windows机器上，这可能会有困难或不可能。
 
-The Windows executable distributed with cloc
-is provided as
-a best-effort of a virus and malware-free `.exe`.
-You are encouraged to run your own virus scanners against the
-executable and also check sites such
-https://www.virustotal.com/ .
-The entries for recent versions are:
+随 cloc 一起分发的 Windows 可执行文件是作为无病毒和无恶意软件的".exe "的最佳努力提供的。
+我们鼓励您针对该可执行程序运行自己的病毒扫描器，并检查网站https://www.virustotal.com/ .
+最近版本的条目是:
 
 cloc-1.84.exe:
 https://www.virustotal.com/gui/file/e73d490c1e4ae2f50ee174005614029b4fa2610dcb76988714839d7be68479af/detection
@@ -439,18 +437,19 @@ https://www.virustotal.com/en/file/c484fc58615fc3b0d5569b9063ec1532980281c3155e4
 cloc 1.66 exe:
 https://www.virustotal.com/en/file/54d6662e59b04be793dd10fa5e5edf7747cf0c0cc32f71eb67a3cf8e7a171d81/analysis/1453601367/
 
-#### Why is the Windows executable so large?
+#### 为什么Windows的可执行程序这么大?
 
 Windows executables of cloc versions 1.60 and earlier, created with
 perl2exe as noted above, are about 1.6 MB, while versions 1.62 and 1.54, created
 with `PAR::Packer`, are 11 MB.
+
 Version 1.66, built with a newer version of `PAR::Packer`, is about 5.5 MB.
 Why are the `PAR::Packer`, executables so
 much larger than those built with perl2exe? My theory is that perl2exe
 uses smarter tree pruning logic
 than `PAR::Packer`, but that's pure speculation.
 
-#### Create your own executable
+#### 创建你自己的可执行文件
 The most robust option for creating a Windows executable of
 cloc is to use [ActiveState's Perl Development Kit](http://www.activestate.com/perl-dev-kit).
 It includes a utility, `perlapp`, which can build stand-alone
@@ -482,11 +481,9 @@ to properly set up your environment.
 
 [](1}}})
 <a name="Basic_Use"></a> []({{{1)
-# [Basic Use &#9650;](#___top "click to go to top of document")
+# [基本用途 &#9650;](#___top "click to go to top of document")
 
-cloc is a command line program that takes file, directory, and/or
-archive names as inputs. Here's an example of running cloc against the
-Perl v5.22.0 source distribution:
+cloc 是一个命令行程序，它以文件、目录和/或存档名作为输入。下面是一个在 Perl v5.22.0 源码发行版中运行 cloc 的例子。
 
 <pre>
 prompt> cloc perl-5.22.0.tar.gz
@@ -521,10 +518,10 @@ SUM:                              3434         176974         243934         903
 
 </pre>
 
-To run cloc on Windows computers, one must first open up a command (aka DOS) window and invoke cloc.exe from the command line there.
+要在Windows电脑上运行cloc，首先必须打开一个命令(又名DOS)窗口，从命令行中调用cloc.exe .
 [](1}}})
 <a name="Options"></a> []({{{1)
-# [Options &#9650;](#___top "click to go to top of document")
+# [选项 &#9650;](#___top "click to go to top of document")
 
 <pre>
 prompt> cloc --help
@@ -933,7 +930,7 @@ Usage: cloc [options] &lt;file(s)/dir(s)/git hash(es)&gt; | &lt;set 1&gt; &lt;se
 </pre>
 [](1}}})
 <a name="Languages"></a> []({{{1)
-# [Recognized Languages &#9650;](#___top "click to go to top of document")
+# [认可的语言 &#9650;](#___top "click to go to top of document")
 
 <pre>
 prompt> cloc --show-lang
@@ -1194,8 +1191,7 @@ YAML                       (clang-format, clang-tidy, gemrc, glide.lock, mir, re
 zsh                        (zsh)
 </pre>
 
-The above list can be customized by reading language definitions from a
-file with the `--read-lang-def` or `--force-lang-def` options.
+上面的列表可以通过使用`--read-lang-def`或`--force-lang-def`选项从一个文件中读取语言定义来定制。
 
 These file extensions map to multiple languages:
 
@@ -1221,27 +1217,22 @@ These file extensions map to multiple languages:
 *   `ui`  files could be Qt or Glade
 *   `v`   files could be Verilog-SystemVerilog or Coq
 
-cloc has subroutines that attempt to identify the correct language based
-on the file's contents for these special cases. Language identification
-accuracy is a function of how much code the file contains; .m files with
+cloc有一些子程序，试图根据文件的内容来识别这些特殊情况下的正确语言
+Language identification accuracy is a function of how much code the file contains; .m files with
 just one or two lines for example, seldom have enough information to
 correctly distinguish between MATLAB, Mercury, MUMPS, or Objective C.
 
-Languages with file extension collisions are difficult to customize with
-`--read-lang-def` or `--force-lang-def` as they have no mechanism to
-identify languages with common extensions. In this situation one must
-modify the cloc source code.
+有文件扩展名碰撞的语言很难用 `--read-lang-def` 或 `--force-lang-def` 来定制，因为它们没有机制来识别具有共同扩展名的语言。在这种情况下，我们必须修改 cloc 源代码。
 [](1}}})
 <a name="How_it_works"></a> []({{{1)
-# [How It Works &#9650;](#___top "click to go to top of document")
+# [它是如何工作的 &#9650;](#___top "click to go to top of document")
 
-cloc's method of operation resembles SLOCCount's: First, create a list
-of files to consider. Next, attempt to determine whether or not found
-files contain recognized computer language source code. Finally, for
-files identified as source files, invoke language-specific routines to
-count the number of source lines.
+cloc的操作方法类似于SLOCCount的操作方法。<br>
+首先，创建一个要考虑的文件列表。<br>
+接下来，尝试确定所找到的文件是否包含识别的计算机语言源码。<br>
+最后，对于被识别为源文件的文件，调用特定语言的例程来计算源码行数。
 
-A more detailed description:
+更详细的说明:
 
 1.  If the input file is an archive (such as a .tar.gz or .zip file),
     create a temporary directory and expand the archive there using a
@@ -1285,24 +1276,18 @@ A more detailed description:
         * comment lines = L<sub>non_blank</sub> - L<sub>code</sub>
         * code lines = L<sub>code</sub>
 
-The options modify the algorithm slightly. The `--read-lang-def` option
-for example allows the user to read definitions of comment filters,
-known file extensions, and known scripting languages from a file. The
-code for this option is processed between Steps 2 and 3.
+这些选项稍微修改了算法。<br>
+例如`--read-lang-def`选项允许用户从文件中读取注释过滤器的定义、已知的文件扩展名和已知的脚本语言。这个选项的代码在处理步骤2和3之间。
 [](1}}})
 <a name="Advanced_Use"></a> []({{{1)
-# [Advanced Use &#9650;](#___top "click to go to top of document")
+# [高级用法 &#9650;](#___top "click to go to top of document")
 [](1}}})
 <a name="strip_comments"></a> []({{{1)
-##  [Remove Comments from Source Code &#9650;](#___top "click to go to top of document")
+##  [从源码中删除注释 &#9650;](#___top "click to go to top of document")
 
-How can you tell if cloc correctly identifies comments? One way to
-convince yourself cloc is doing the right thing is to use its
-`--strip-comments` option to remove comments and blank lines from files, then
-compare the stripped-down files to originals.
+如何判断cloc是否正确识别注释？一个让自己相信cloc做得对的方法是使用它的`--strip-comments`选项来删除文件中的注释和空行，然后将剥离后的文件与原始文件进行比较。
 
-Let's try this out with the SQLite amalgamation, a C file containing all
-code needed to build the SQLite library along with a header file:
+让我们用SQLite amalgamation来试试，这个C文件包含了构建SQLite库所需的所有代码和头文件.
 
 <pre>
 prompt> tar zxf sqlite-amalgamation-3.5.6.tar.gz
@@ -1321,9 +1306,9 @@ C                     1      5167     26827     50901 x   0.77 =       39193.77
 -------------------------------------------------------------------------------
 </pre>
 
-The extension argument given to --strip-comments is arbitrary; here nc was used as an abbreviation for "no comments".
+给予 --strip-comments 的扩展参数是任意的；这里 nc 被用作 "无注释"的缩写 .
 
-cloc removed over 31,000 lines from the file:
+cloc从文件中删除了31 000多行:
 
 <pre>
 prompt> wc -l sqlite3.c sqlite3.c.nc
@@ -1334,13 +1319,9 @@ prompt> echo "82895 - 50901" | bc
 31994
 </pre>
 
-We can now compare the original file, sqlite3.c and the one stripped of
-comments, sqlite3.c.nc with tools like diff or vimdiff and see what
-exactly cloc considered comments and blank lines. A rigorous proof that
-the stripped-down file contains the same C code as the original is to
-compile these files and compare checksums of the resulting object files.
+现在我们可以用diff或vimdiff等工具来比较原始文件sqlite3.c和被剥离了注释的文件sqlite3.c.nc，看看cloc到底认为注释和空行是什么。一个严格的证明被剥离的文件包含与原文件相同的C语言代码的方法是编译这些文件，并比较所产生的对象文件的校验和.
 
-First, the original source file:
+首先，原始源文件:
 
 <pre>
 prompt> gcc -c sqlite3.c
@@ -1348,7 +1329,7 @@ prompt> md5sum sqlite3.o
 cce5f1a2ea27c7e44b2e1047e2588b49  sqlite3.o
 </pre>
 
-Next, the version without comments:
+接下来是没有注解的版本:
 
 <pre>
 prompt> mv sqlite3.c.nc sqlite3.c
@@ -1357,15 +1338,13 @@ prompt> md5sum sqlite3.o
 cce5f1a2ea27c7e44b2e1047e2588b49  sqlite3.o
 </pre>
 
-cloc removed over 31,000 lines of comments and blanks but did not modify the source code in any significant way since the resulting object file matches the original.
+cloc删除了31,000多行注释和空白，但并没有对源代码进行任何重大修改，因为生成的对象文件与原始的.
 [](1}}})
 <a name="compressed_arch"></a> []({{{1)
-##  [Work with Compressed Archives &#9650;](#___top "click to go to top of document")
-Versions of cloc before v1.07 required an
- `--extract-with=CMD` option to tell cloc how
-to expand an archive file.  Beginning with v1.07 this is extraction is
-attempted automatically.  At the moment the automatic extraction method works
-reasonably well on Unix-type OS's for the following file types:
+##  [使用压缩档案 &#9650;](#___top "click to go to top of document")
+在v1.07之前的cloc版本需要使用`--extract-with=CMD`选项，告诉cloc如何使用来扩展一个存档文件。 
+从v1.07版本开始，这种提取方法会自动进行。 
+目前，自动提取方法在Unix类型的操作系统上运行良好，适用于以下文件类型:
 `.tar.gz`,
 `.tar.bz2`,
 `.tar.xz`,
@@ -1373,54 +1352,44 @@ reasonably well on Unix-type OS's for the following file types:
 `.zip`,
 `.ear`,
 `.deb`.
-Some of these extensions work on Windows if one has WinZip installed
-in the default location (`C:\Program Files\WinZip\WinZip32.exe`).
-Additionally, with newer versions of WinZip, the
-[http://www.winzip.com/downcl.htm](command line add-on)
-is needed for correct operation; in this case one would invoke cloc with
-something like <br>
+如果你在默认位置安装了WinZip，其中一些扩展程序可以在Windows上工作 (`C:\Program Files\WinZip\WinZip32.exe`).
+此外，对于较新版本的WinZip，[http://www.winzip.com/downcl.htm](命令行插件)
+需要正确的操作;<br>
+在这个例子里面，cloc的调用如下 <br>
 <pre>
  --extract-with="\"c:\Program Files\WinZip\wzunzip\" -e -o &gt;FILE&lt; ."
  </code>
 </pre>
 Ref. http://sourceforge.net/projects/cloc/forums/forum/600963/topic/4021070?message=8938196
 
-In situations where the automatic extraction fails, one can try the
-`--extract-with=CMD`
-option to count lines of code within tar files, Zip files, or
-other compressed archives for which one has an extraction tool.
-cloc takes the user-provided extraction command and expands the archive
-to a temporary directory (created with File::Temp),
-counts the lines of code in the temporary directory,
-then removes that directory.  While not especially helpful when dealing
-with a single compressed archive (after all, if you're going to type
-the extraction command anyway why not just manually expand the archive?)
-this option is handy for working with several archives at once.
+在自动提取失败的情况下，可以尝试使用 `--extract-with=CMD` 选项来计算 tar 文件、Zip 文件或 其他有提取工具的压缩档案。
 
-For example, say you have the following source tarballs on a Unix machine<br>
+cloc 读取用户提供的提取命令，并扩展存档。到一个临时目录（created with File::Temp）。计算临时目录中的代码行数。然后删除该目录。 
+
+虽然在处理 与单一的压缩存档（毕竟，如果你要输入 拔出命令，为什么不直接手动扩展存档？) 这个选项对于同时处理多个存档是很方便的。
+
+例如，假设你在一台Unix机器上有以下的源码包<br>
 
     perl-5.8.5.tar.gz
     Python-2.4.2.tar.gz
 
-and you want to count all the code within them.  The command would be
+而你想计算其中的所有代码。 该命令将是
 <pre>
 cloc --extract-with='gzip -dc &gt;FILE&lt; | tar xf -' perl-5.8.5.tar.gz Python-2.4.2.tar.gz
 </pre>
-If that Unix machine has GNU tar (which can uncompress and extract in
-one step) the command can be shortened to
+如果Unix机器有GNU tar (可以一步到位地解压和释放) 该命令简称为
 <pre>
 cloc --extract-with='tar zxf &gt;FILE&lt;' perl-5.8.5.tar.gz Python-2.4.2.tar.gz
 </pre>
-On a Windows computer with WinZip installed in
-`c:\Program Files\WinZip` the command would look like
+在安装了WinZip的Windows电脑上，在`c:\Program Files\WinZip`中安装了WinZip命令，该命令看起来像这样
 <pre>
 cloc.exe --extract-with="\"c:\Program Files\WinZip\WinZip32.exe\" -e -o &gt;FILE&lt; ." perl-5.8.5.tar.gz Python-2.4.2.tar.gz
 </pre>
 Java `.ear` files are Zip files that contain additional Zip
 files.  cloc can handle nested compressed archives without
 difficulty--provided all such files are compressed and archived in the
-same way.  Examples of counting a
-Java `.ear` file in Unix and Windows:
+same way.  
+Examples of counting a Java `.ear` file in Unix and Windows:
 <pre>
 <i>Unix&gt;</i> cloc --extract-with="unzip -d . &gt;FILE&lt; " Project.ear
 <i>DOS&gt;</i> cloc.exe --extract-with="\"c:\Program Files\WinZip\WinZip32.exe\" -e -o &gt;FILE&lt; ." Project.ear
@@ -1428,7 +1397,7 @@ Java `.ear` file in Unix and Windows:
 
 [](1}}})
 <a name="diff"></a> []({{{1)
-##  [Differences &#9650;](#___top "click to go to top of document")
+##  [差异性 &#9650;](#___top "click to go to top of document")
 The `--diff` switch allows one to measure the relative change in
 source code and comments between two versions of a file, directory,
 or archive.  Differences reveal much more than absolute code
@@ -1444,14 +1413,7 @@ many lines of source were added, removed, modified or stayed
 the same, and how many lines of comments were added, removed,
 modified or stayed the same.
 
-Differences in blank lines are handled much more coarsely
-because these are stripped by cloc early on.  Unless a
-file pair is identical, cloc will report only differences
-in absolute counts of blank lines.  In other words, one
-can expect to see only entries for 'added' if the second
-file has more blanks than the first, and 'removed' if the
-situation is reversed.  The entry for 'same' will be non-zero
-only when the two files are identical.
+空白行的差异会被更粗略地处理，因为cloc会在早期剥离这些差异。 除非一个文件对是相同的，否则cloc只会报告空行的绝对数的差异。 换句话说，如果第二个文件的空白行数比第一个文件多，我们可以期望只看到 "添加 "的条目，如果情况相反，则会看到 "删除 "的条目。 只有当两个文件完全相同时，"相同 "的条目才会是非零。
 
 In addition to file pairs, one can give cloc pairs of
 directories, or pairs of file archives, or a file archive
@@ -1476,8 +1438,7 @@ as files added and deleted.  The symbols `==` and `!=` before each
 file pair indicate if the files are identical (`==`)
 or if they have different content (`!=`).
 
-Here's sample output showing the difference between the Python 2.6.6 and 2.7
-releases:
+以下是显示Python 2.6.6 和2.7版本之间差异的输出示例:
 <pre><i>prompt&gt;</i> cloc --diff Python-2.7.9.tgz Python-2.7.10.tar.xz
     4315 text files.
     4313 text files.s
@@ -1637,15 +1598,11 @@ regular expression.  Nested C comments yield erroneous results however.
 
 [](1}}})
 <a name="custom_lang"></a> []({{{1)
-##  [Create Custom Language Definitions &#9650;](#___top "click to go to top of document")
-cloc can write its language comment definitions to a file or can read
-comment definitions from a file, overriding the built-in definitions.
-This can be useful when you want to use cloc to count lines of a
-language not yet included, to change association of file extensions
-to languages, or to modify the way existing languages are counted.
+##  [创建自定义语言的定义  &#9650;](#___top "click to go to top of document")
+cloc可以将语言注释定义写入文件，或者从文件中读取注释定义，覆盖内置定义。
+当你想用cloc来计算还没有包含的语言的行数，改变文件扩展名与语言的关联，或者修改现有语言的计算方式时，这可能很有用。
 
-The easiest way to create a custom language definition file is to
-make cloc write its definitions to a file, then modify that file:
+创建自定义语言定义文件的最简单方法是让cloc将其定义写到一个文件中，然后修改该文件:
 <pre><i>Unix&gt;</i> cloc --write-lang-def=my_definitions.txt
 </pre>
 creates the file `my_definitions.txt` which can be modified
@@ -1673,8 +1630,8 @@ Each language entry has four parts:
   unless you want to compare your language to a hypothetical
   third generation programming language.
 
-A filter defines a method to remove comment text from the source file.
-For example the entry for C++ looks like this
+过滤器定义了一种方法来删除源文件中的注释文本。
+例如，C++的条目是这样的
 <pre>C++
     filter call_regexp_common C++
     filter remove_inline //.*$
@@ -1700,19 +1657,17 @@ for motivated individuals to modify or extend cloc's language definitions.
 
 [](1}}})
 <a name="combine_reports"></a> []({{{1)
-##  [Combine Reports &#9650;](#___top "click to go to top of document")
+##  [合并报告 &#9650;](#___top "click to go to top of document")
 
-If you manage multiple software projects you might be interested in
-seeing line counts by project, not just by language.
-Say you manage three software projects called MariaDB, PostgreSQL, and SQLite.
-The teams responsible for each of these projects run cloc on their
-source code and provide you with the output.
+如果你管理多个软件项目，你可能会有兴趣看到按项目，而不仅仅是按语言分类的行数。.
+假设你管理三个软件项目，分别是MariaDB、PostgreSQL和SQLite.
+负责这些项目的团队会在他们的源代码上运行 cloc，并为您提供输出.
 For example MariaDB team does
 
 <pre>cloc --out mariadb-10.1.txt mariadb-server-10.1.zip</pre>
 
 and provides you with the file `mariadb-10.1.txt`.
-The contents of the three files you get are
+你得到的三个文件的内容是
 
 <pre>
 <i>Unix&gt;</i> cat mariadb-10.1.txt
@@ -1804,10 +1759,8 @@ SUM:                              3864         178917         295080        1698
 -----------------------------------------------------------------------------------
 </pre>
 
-While these three files are interesting, you also want to see
-the combined counts from all projects.
-That can be done with cloc's `--sum_reports`
-option:
+虽然这三个文件很有意思，但你也想看看所有项目的综合计数。
+这可以用cloc的`--sum_reports`选项来完成:
 
 <pre>
 <i>Unix&gt;</i> cloc --sum-reports --out=databases mariadb-10.1.txt  sqlite-3081101.txt  postgresql-9.4.4.txt
@@ -1815,10 +1768,7 @@ Wrote databases.lang
 Wrote databases.file
 </pre>
 
-The report combination produces two output files, one for sums by
-programming language (`databases.lang`) and one by project
-(`databases.file`).
-Their contents are
+报告组合产生两个输出文件,一个是按编程语言 (`databases.lang`)和按项目(`databases.file`)的总和。
 <pre><i>Unix&gt;</i> cat databases.lang
 https://github.com/AlDanial/cloc v 1.65
 --------------------------------------------------------------------------------
@@ -1879,17 +1829,16 @@ SUM:                             8882         562671         867744        39291
 ----------------------------------------------------------------------------------
 </pre>
 
-Report files themselves can be summed together.  Say you also manage
-development of Perl and Python and you want to keep track
-of those line counts separately from your database projects.  First
-create reports for Perl and Python separately:
+报告文件本身可以归纳起来。 假设你也管理Perl和Python的开发，你想把这些行数与数据库项目分开来跟踪。 
+
+首先为Perl和Python分别创建报表:
 
 <pre>
 cloc --out perl-5.22.0.txt   perl-5.22.0.tar.gz
 cloc --out python-2.7.10.txt Python-2.7.10.tar.xz
 </pre>
 
-then sum these together with
+然后加起来
 
 <pre>
 <i>Unix&gt;</i> cloc --sum-reports --out script_lang perl-5.22.0.txt python-2.7.10.txt
@@ -1948,7 +1897,7 @@ SUM:                          6674         338250         417148        1902571
 -------------------------------------------------------------------------------
 </pre>
 
-Finally, combine the combination files:
+最后，结合组合文件:
 
 <pre>
 <i>Unix&gt;</i> cloc --sum-reports --report_file=everything databases.lang script_lang.lang
@@ -2020,21 +1969,16 @@ SUM:                         15556         900921        1284892        5831741
 -------------------------------------------------------------------------------
 </pre>
 
-One limitation of the `--sum-reports` feature is that the individual counts must
-be saved in the plain text format.  Counts saved as
-XML, JSON, YAML, or SQL will produce errors if used in a summation.
+`--sum-reports`功能的一个限制是，必须以纯文本格式保存单个计数。
+保存为XML、JSON、JSON、YAML或SQL格式的计数，如果在汇总中使用，会产生错误.
 
 [](1}}})
 <a name="sql"></a> []({{{1)
 ##  [SQL &#9650;](#___top "click to go to top of document")
-Cloc can write results in the form of SQL table create and insert
-statements for use
-with relational database programs such as SQLite, MySQL,
-PostgreSQL, Oracle, or Microsoft SQL.
-Once the code count information is in a database,
-the information can be interrogated and displayed in interesting ways.
+Cloc可以以SQL表创建和插入语句的形式编写结果，用于SQLite、MySQL、PostgreSQL、Oracle或Microsoft SQL等关系型数据库程序。
+一旦代码计数信息进入数据库，就可以通过有趣的方式查询和显示这些信息。
 
-A database created from cloc SQL output has two tables,
+一个由 cloc SQL 输出创建的数据库有两个表,
 **metadata** and **t**:
 
 Table **metadata**:
@@ -2057,14 +2001,11 @@ Table **t**:
 | nCode      |integer |
 | nScaled    |real    |
 
-The **metadata** table contains information about when the cloc run
-was made.  The `--sql-append` switch allows one to combine
-many runs in a single database; each run adds a
-row to the metadata table.
-The code count information resides in table **t**.
+**metadata**表包含了关于cloc运行时间的信息。 
+这`--sql-append`开关允许在一个数据库中合并许多运行，每一次运行都会在元数据表中增加一个row。
+代码计数信息驻留在表**t**中
 
-Let's repeat the code count examples of Perl, Python, SQLite, MySQL and
-PostgreSQL tarballs shown in the
+让我们重复一下Perl、Python、SQLite、MySQL和PostgreSQL tarballs的代码计数示例，如所示。
 [Combine Reports](#combine_reports)
 example above, this time
 using the SQL output options and the
@@ -2084,14 +2025,11 @@ SQLite executable:
 cloc --sql 1 --sql-project mariadb mariadb-server-10.1.zip | sqlite3 code.db
 </pre>
 
-The `--sql-project mariadb` part is optional; there's no need
-to specify a project name when working with just one code base.  However,
-since we'll be adding code counts from four other tarballs, we'll only
-be able to identify data by input source if we supply a
-project name for each run.
+这`--sql-project mariadb`部分是可选的，不需要
+当只使用一个代码库时，可以指定一个项目名称。 
+但是，由于我们将从其他四个代码库中添加代码计数，所以只有为每一次运行提供一个项目名称，我们才能通过输入源来识别数据。
 
-Now that we have a database we will need to pass in the `--sql-append`
-switch to tell cloc not to wipe out this database but instead add more data:
+现在我们有了一个数据库，我们需要通过`--sql-append`开关来告诉cloc不要删除这个数据库，而是增加更多的数据:
 
 <pre>
 cloc --sql 1 --sql-project postgresql --sql-append postgresql-9.4.4.tar.bz2        | sqlite3 code.db
@@ -2100,11 +2038,9 @@ cloc --sql 1 --sql-project python     --sql-append Python-2.7.10.tar.xz         
 cloc --sql 1 --sql-project perl       --sql-append perl-5.22.0.tar.gz              | sqlite3 code.db
 </pre>
 
-Now the fun begins--we have a database, `code.db`, with lots of
-information about the five projects and can query it
-for all manner of interesting facts.
+现在有趣的事情开始了 -- 我们有一个数据库，`code.db`，里面有很多关于这五个项目的信息，可以查询到对于各种有趣的事实.
 
-**Which is the longest file over all projects?**
+**在所有的项目中，哪一个是最长的文件？**
 
 <pre>
 prompt> sqlite3 code.db 'select project,file,nBlank+nComment+nCode as nL from t
@@ -2113,23 +2049,19 @@ prompt> sqlite3 code.db 'select project,file,nBlank+nComment+nCode as nL from t
 sqlite|sqlite-amalgamation-3081101/sqlite3.c|161623
 </pre>
 
-`sqlite3`'s default output format leaves a bit to be desired.
-We can add an option to the program's rc file,
-`~/.sqliterc`, to show column headers:
+`sqlite3`的默认输出格式有一点不尽如人意。
+我们可以在程序的rc文件`~/.sqliteerc`中添加一个选项来显示列标题:
 <pre>
   .header on
 </pre>
-One might be tempted to also include
+人们可能会想把
 <pre>
   .mode column
 </pre>
-in `~/.sqliterc` but this causes problems when the output has more than
-one row since the widths of entries in the first row govern the maximum
-width for all subsequent rows. Often this leads to truncated output--not
-at all desirable. One option is to write a custom SQLite output
-formatter such as `sqlite_formatter`, included with cloc.
+在`~/.sqliterc`里面，但当输出有多于一行时，这就会造成问题，因为第一行的条目宽度决定了后面所有行的最大宽度。这通常会导致输出被截断--这并不可取。
+一种方法是编写一个自定义的SQLite输出格式化器，比如`sqlite_formatter`，包含在cloc中.
 
-To use it, simply pass `sqlite3`'s STDOUT into `sqlite_formatter`
+要使用它, 简单地通过 `sqlite3`'s STDOUT into `sqlite_formatter`
 via a pipe:
 
 <pre>
@@ -2144,10 +2076,10 @@ prompt> sqlite3 code.db 'select project,file,nBlank+nComment+nCode as nL from t
 </pre>
 
 If the "Project File" line doesn't appear, add `.header on` to your
-`~/.sqliterc` file as explained above.
+`~/.sqliterc` file 如上所述.
 
 
-**What is the longest file over all projects?**
+**所有项目中最长的文件是什么?**
 
 <pre>
 prompt> sqlite3 code.db 'select project,file,nBlank+nComment+nCode as nL from t
@@ -2158,7 +2090,7 @@ _______ _____________________________________ ______
 sqlite  sqlite-amalgamation-3081101/sqlite3.c 161623
 </pre>
 
-**What is the longest file in each project?**
+**每个项目中最长的文件是什么?**
 
 <pre>
 prompt> sqlite3 code.db 'select project,file,max(nBlank+nComment+nCode) as nL from t
@@ -2173,7 +2105,7 @@ perl       perl-5.22.0/cpan/Locale-Codes/lib/Locale/Codes/Language_Codes.pm 1007
 sqlite     sqlite-amalgamation-3081101/sqlite3.c                            161623
 </pre>
 
-**Which files in each project have the most code lines?**
+**每个项目中哪些文件的代码行数最多?**
 
 <pre>
 prompt> sqlite3 code.db 'select project,file,max(nCode) as nL from t
@@ -2188,7 +2120,7 @@ postgresql postgresql-9.4.4/src/interfaces/ecpg/preproc/preproc.c            452
 python     Python-2.7.10/Mac/Modules/qt/_Qtmodule.c                          26705
 </pre>
 
-**Which C source files with more than 300 lines have a comment ratio below 1%?**
+**哪些300行以上的C源文件的注释率低于1%?**
 
 <pre>
 prompt> sqlite3 code.db 'select project, file, nCode, nComment,
@@ -2259,7 +2191,7 @@ python     Python-2.7.10/Modules/clmodule.c                                     
 python     Python-2.7.10/Mac/Modules/folder/_Foldermodule.c                                                  306        3 0.970873786407767
 </pre>
 
-**What are the ten longest files (based on code lines) that have no comments at all?  Exclude header, .html, and YAML files.**
+**十个最长的文件（根据代码行数计算）中没有注释的文件有哪些?  排除 header .html 和 YAML文件**
 
 <pre>
 prompt> sqlite3 code.db 'select project, file, nCode from t
@@ -2281,8 +2213,7 @@ mariadb server-10.1/mysql-test/suite/funcs_1/storedproc/storedproc_02.inc     14
 python  Python-2.7.10/PC/VS8.0/_bsddb.vcproj                                  1463
 </pre>
 
-**What are the most popular languages (in terms of lines
-of code) in each project?**
+**每个项目中最受欢迎的语言（按代码行数计算）有哪些?**
 
 <pre>
 prompt> sqlite3 code.db 'select project, language, sum(nCode) as SumCode from t
@@ -2395,24 +2326,19 @@ sqlite     C/C++ Header                 1546
 
 [](1}}})
 <a name="custom_column_output"></a> []({{{1)
-##  [Custom Column Output &#9650;](#___top "click to go to top of document")
-Cloc's default output is a text table with five columns:
+##  [自定义列输出 &#9650;](#___top "click to go to top of document")
+Cloc的默认输出是一个有五个列的文本表:
 language, file count, number of blank lines, number of comment
-lines and number of code lines.  The switches `--by-file`,
-`--3`, and `--by-percent` generate additional information but
-sometimes even those are insufficient.
+lines and number of code lines.  开关`--by-file`,`--3`, and `--by-percent`会产生额外的信息，但有时即使是这些信息也是不够的。.
 
-The `--sql` option described in the previous section offers the
-ability to create custom output.  This section has a pair of examples
-that show how to create custom columns.
-The first example includes an extra column, **Total**, which is the
-sum of the numbers of blank, comment, and code lines.
-The second shows how to include the language name when running
-with `--by-file`.
+上一节中描述的`--sql`选项提供了创建自定义输出的能力。  
+本节有一对例子，展示了如何创建自定义列。
+第一个例子包括一个额外的列，**Total**，它是空行、注释和代码行数之和。
+第二种显示了在使用`--by-file`运行时如何包含语言名称.
 
-**Example 1:  Add a "Totals" column.**
+**Example 1:  增加一个 "Totals"栏.**
 
-The first step is to run cloc and save the output to a relational database,
+第一步，是运行cloc并将输出保存到关系型数据库中,
 SQLite in this case:
 <pre>
 cloc --sql 1 --sql-project x yaml-cpp-yaml-cpp-0.5.3.tar.gz | sqlite3 counts.db
@@ -2420,9 +2346,7 @@ cloc --sql 1 --sql-project x yaml-cpp-yaml-cpp-0.5.3.tar.gz | sqlite3 counts.db
 (the tar file comes from the
 [YAML-C++](https://github.com/jbeder/yaml-cpp) project).
 
-Second, we craft an SQL query that returns the regular cloc output
-plus an extra column for totals, then save the SQL statement to
-a file, `query_with_totals.sql`:
+第二步，我们制作一个SQL查询，返回常规的cloc输出加上一个额外的总计列，然后将SQL语句保存到一个文`query_with_totals.sql`中:
 <pre>
 -- file query_with_totals.sql
 select Language, count(File)   as files                       ,
@@ -2433,9 +2357,8 @@ select Language, count(File)   as files                       ,
     from t group by Language order by code desc;
 </pre>
 
-Third, we run this query through SQLite using the `counts.db` database.
-We'll include the `-header` switch so that SQLite prints the
-column names:
+第三，我们通过SQLite使用`counts.db`数据库运行这个查询。
+我们将包含 `-header` 开关，这样SQLite就可以打印出栏目名称。
 
 <pre>
 &gt; cat query_with_totals.sql | sqlite3 -header counts.db
@@ -2451,8 +2374,8 @@ make|5|127|173|464|764
 Markdown|2|30|0|39|69
 </pre>
 
-The extra column for **Total** is there but the format is unappealing.
-Running the output through `sqlite_formatter` yields the desired result:
+额外的**Total**列是存在的，但格式并不美观。
+通过 `sqlite_formatter`运行输出，可以得到所需的结果:
 
 <pre>
 &gt; cat query_with_totals.sql | sqlite3 -header counts.db | sqlite_formatter
@@ -2471,17 +2394,13 @@ Markdown           2    30       0    39    69
 
 The next section,
 [Wrapping cloc in other scripts](#wrapping-cloc-in-other-scripts-),
-shows one way these commands can be combined
-into a new utility program.
+显示了这些命令可以组合成一个新的实用程序的一种方法。
 
-**Example 2:  Include a column for "Language" when running with `--by-file`.**
+**Example 2: 在使用`--by-file`时包含一列"Language".**
 
-Output from `--by-file` omits each file's language to save screen real estate;
-file paths for large projects can be long and including an extra 20 or so
-characters for a Language column can be excessive.
+`--by-file`的输出会省略每个文件的语言，以保存大型项目的屏幕实际文件路径可能会很长，并且“语言”列中额外包含20个左右的字符可能会过多。
 
-As an example, here are the first few lines of output using the same
-code base as in Example 1:
+作为一个例子，这里是使用与例1中相同的代码库的前几行输出结果:
 
 <pre>
 &gt; cloc --by-file yaml-cpp-yaml-cpp-0.5.3.tar.gz
@@ -2503,13 +2422,10 @@ yaml-cpp-yaml-cpp-0.5.3/test/gmock-1.7.0/gtest/test/gtest_unittest.cc           
 yaml-cpp-yaml-cpp-0.5.3/test/gmock-1.7.0/gtest/include/gtest/internal/gtest-param-util-generated.h         349            235           4559
 </pre>
 
-The absence of language identification for each file
-is a bit disappointing, but
-this can be remedied with a custom column solution.
+每个文件没有语言标识，这让人有些失望，但可以通过自定义的列式解决方案来弥补.
 
-The first step, creating a database, matches that from Example 1 so
-we'll go straight to the second step of creating the desired
-SQL query.  We'll store this one in the file `by_file_with_language.sql`:
+第一步，创建一个数据库，与例1中的步骤相吻合，所以我们直接进入第二步，创建所需的SQL查询。 
+我们将把它存储在文件`by_file_with_language.sql`中:
 
 <pre>
 -- file by_file_with_language.sql
@@ -2519,8 +2435,7 @@ select File, Language, nBlank   as blank  ,
     from t order by code desc;
 </pre>
 
-Our desired extra column appears when we pass this custom SQL query
-through our database:
+当我们将这个自定义的SQL查询传递给我们的数据库时，我们所需的额外列就会出现。:
 
 <pre>
 &gt; cat by_file_with_language.sql | sqlite3 -header counts.db | sqlite_formatter
@@ -2543,12 +2458,11 @@ yaml-cpp-yaml-cpp-0.5.3/test/gmock-1.7.0/gtest/include/gtest/internal/gtest-para
 [](1}}})
 <a name="wrapping_cloc_in_other_scripts"></a> []({{{1)
     *   [](#wrapping-cloc-in-other-scripts-)
-##  [Wrapping cloc in other scripts &#9650;](#___top "click to go to top of document")
+##  [包装 cloc的其他脚本 &#9650;](#___top "click to go to top of document")
 
-More complex code counting solutions are possible by wrapping
-cloc in scripts or programs.  The "total lines" column from
-example 1 of [Custom Column Output](#custom-column-output-)
-could be simplified to a single command with this shell script (on Linux):
+通过在脚本或程序中封装cloc，可以实现更复杂的代码计数解决方案.  
+The "total lines" column from example 1 of [Custom Column Output](#custom-column-output-)
+"总行数"一栏可以简化为一个命令，用这个shell脚本(在Linux上):
 
 <pre>
 #!/bin/sh
@@ -2577,12 +2491,12 @@ echo ${SQL} | sqlite3 -header ${DBFILE} | sqlite_formatter
 rm ${DBFILE}
 </pre>
 
-Saving the lines above to ``total_columns.sh`` and making it
-executable (``chmod +x total_columns.sh``) would let us do
+保存上面的line命令 to ``total_columns.sh`` 赋予执行权限 (``chmod +x total_columns.sh``) 
+可以让我们使用如下:
 <pre>
 ./total_columns.sh yaml-cpp-yaml-cpp-0.5.3.tar.gz
 </pre>
-to directly get
+直接得到
 <pre>
 Language       files blank comment code  Total
 ______________ _____ _____ _______ _____ _____
@@ -2597,55 +2511,48 @@ make               5   127     173   464   764
 Markdown           2    30       0    39    69
 </pre>
 
-Other examples:
-* Count code from a specific branch of a web-hosted
-git repository and send the results as a .csv email attachment:
+其他例子:
+* 计算来自网络托管的特定分支的git仓库代码, 并将结果以.csv电子邮件附件的形式发送:
 https://github.com/dannyloweatx/checkmarx
 
 
 [](1}}})
 <a name="git_and_UTF8_pathnames"></a> []({{{1)
-##  [git and UTF8 pathnames &#9650;](#___top "click to go to top of document")
+##  [git和UTF8路径名 &#9650;](#___top "click to go to top of document")
 
-cloc's ``--git`` option may fail if you work with directory or
-file names with UTF-8 characters (for example, see
+cloc的`--git`选项可能会失败，如果你使用UTF-8字符的目录或文件名，则可能会失败(for example, see
 <a href=https://github.com/AlDanial/cloc/issues/457>issue 457</a>).
-The solution,
+解决方案,
 https://stackoverflow.com/questions/22827239/how-to-make-git-properly-display-utf-8-encoded-pathnames-in-the-console-window,
-is to apply this git configuration command:
+是应用这个git配置命令:
 
 <pre>
 git config --global core.quotepath off
 </pre>
 
-Your console's font will need to be capable of displaying
-Unicode characters.
+你的控制台的字体需要能够显示Unicode字符.
 
 [](1}}})
 <a name="scale_factors"></a> []({{{1)
-##  [Third Generation Language Scale Factors &#9650;](#___top "click to go to top of document")
+##  [第三代语言量表因子 &#9650;](#___top "click to go to top of document")
 
-cloc versions before 1.50 by default computed, for the provided inputs, a
-rough estimate of how many lines of code would be needed to write the
-same code in a hypothetical third-generation computer language.
-To produce this output one must now use the `--3` switch.
+cloc版本在1.50之前的默认情况下，对所提供的输入，计算出了在假设的第三代计算机语言中写同样的代码需要多少行代码的粗略估计.
+要产生这种输出，现在必须使用`--3`开关.
 
-Scale factors were derived from the 2006 version of language gearing ratios
-listed at Mayes Consulting web site,
-[http://softwareestimator.com/IndustryData2.htm](http://softwareestimator.com/IndustryData2.htm), using this equation:
+比例系数来自于2006年版的语文资产负债率，该网站上的语文资产负债率是由迈斯咨询公司网站上列出的2006年版语文资产负债率,
+[http://softwareestimator.com/IndustryData2.htm](http://softwareestimator.com/IndustryData2.htm), 用这个方程:
 
 cloc scale factor for language X = 3rd generation default gearing ratio / language X gearing ratio
 
-For example, cloc 3rd generation scale factor for DOS Batch = 80 / 128 = 0.625.
+For example, 
+cloc 3rd generation scale factor for DOS Batch = 80 / 128 = 0.625.
 
-The biggest flaw with this approach is that gearing ratios are defined
-for logical lines of source code not physical lines (which cloc counts).
-The values in cloc's 'scale' and '3rd gen. equiv.' columns should be
-taken with a large grain of salt.
+这种方法最大的缺陷是，这种方法的最大缺陷是，齿轮比是针对逻辑行的源代码定义的，而不是针对物理行（coc计算）.
+cloc的'scale' and '3rd gen. equiv.' 栏中的数值应以较高的标准来看待.
 
 [](1}}})
 <a name="complex_regex_recursion"></a> []({{{1)
-#  [Complex regular subexpression recursion limit &#9650;](#___top "click to go to top of document")
+##  [复杂正则子表达式递归极限 &#9650;](#___top "click to go to top of document")
 cloc relies on the Regexp::Common module's regular expressions to remove
 comments from source code.  If comments are malformed, for example the
 ``/*`` start comment marker appears in a C program without a corresponding ``*/``
@@ -2670,27 +2577,27 @@ will contain strings that no longer match the input source.
 
 [](1}}})
 <a name="Limitations"></a> []({{{1)
-#   [Limitations &#9650;](#___top "click to go to top of document")
-Identifying comments within source code is trickier than one might expect.
-Many languages would need a complete parser to be counted correctly.
-cloc does not attempt to parse any of
-the languages it aims to count and therefore is an imperfect tool.
-The following are known problems:
+##   [限制 &#9650;](#___top "click to go to top of document")
+识别源代码中的注释比想象中的要棘手得多.
+许多语言需要一个完整的解析器才能被正确计算.
+cloc并没有试图解析它所要计算的任何语言，因此它是一个不完美的工具.
+以下是已知的问题:
 
 <ol>
-<li>  Lines containing both source code and comments are counted as lines of code.
+<li>  包含源码和注释的行都算作代码行。.
 </li>
-<li>  Comment markers within strings or
+<li>  字符串内的注释标记或
 <a href="http://www.faqs.org/docs/abs/HTML/here-docs.html">here-documents</a>
-are treated as actual comment markers and not string literals.
-For example the following lines of C code
+被视为实际的注释标记，而不是字符串字形.
+
+例如下面这几行C语言代码
 <pre>printf(" /* ");
 for (i = 0; i < 100; i++) {
     a += i;
 }
 printf(" */ ");
 </pre>
-look to cloc like this:
+look to cloc 这样:
 <pre>printf(" xxxxxxx
 xxxxxxx
 xxxxxxx
@@ -2701,62 +2608,53 @@ where `xxxxxxx` represents cloc's view of commented text.
 Therefore cloc counts the five lines as two lines of C code and three
 lines of comments (lines with both code and comment are counted as code).
 
-If you suspect your code has such strings, use the switch
-``--strip-str-comments`` to switch to the algorithm which removes
-embedded comment markers.  Its use will render the five lines above as
+如果你怀疑你的代码中有这样的字符串, use the switch
+``--strip-str-comments`` 切换到删除内嵌注释标记的算法.  
+它的使用将使上述五行变成
 <pre>printf("  ");
 for (i = 0; i < 100; i++) {
     a += i;
 }
 printf("  ");
 </pre>
-and therefore return a count of five lines of code.
-See the
-[previous section](#complex-regular-subexpression-recursion-limit-)
-on drawbacks to using ``--strip-str-comments``.
+并因此返回一个五行代码的计数。
+请看下面的
+[上一章节](#complex-regular-subexpression-recursion-limit-)
+弊端 ``--strip-str-comments``.
 </li>
-<li> Embedded languages are not recognized.  For example, an HTML file containing
-JavaScript will be counted entirely as HTML.
+<li> 嵌入语言不被识别。 例如，一个包含JavaScript的HTML文件将被完全计算为HTML.
 </li>
-<li> Python docstrings can serve several purposes.  They may
-contain documentation,
-comment out blocks of code, or they can be regular strings (when
-they appear on the right hand side of an assignment or as a function argument).
-cloc is unable to infer the meaning of docstrings by context; by default
-cloc treats all docstrings as comments.  The switch
-``--docstring-as--code``
+<li> Python docstrings 可以有多种用途。 
+     它们可以包含文档，注释代码块，也可以是正则字符串 (当它们出现在赋值的右侧或作为函数参数出现时)。
+     cloc 无法通过上下文推断 docstrings 的含义；默认情况下，cloc 将所有 docstrings 作为注释处理.  
+     The switch ``--docstring-as--code``
 treats all docstrings as code.
 </li>
-<li> Language definition files read with <tt>--read-lang-def</tt> or
+<li> 读取语言定义文件 <tt>--read-lang-def</tt> or
 <tt>--force-lang-def</tt> must be plain ASCII text files.
 </li>
-<li> cloc treats compiler pragma's, for example <tt>#if</tt> / <tt>#endif</tt>, as code
-even if these are used to block lines of source from being compiled;
-the blocked lines still contribute to the code count.
+<li> cloc处理编译器的pragma，例如 <tt>#if</tt> / <tt>#endif</tt>, 作为代码，即使这些代码被用来阻止源码被编译，也是如此;
+堵塞的行数仍然会影响到代码的数量.
 </li>
 </ol>
 
 [](1}}})
 <a name="AdditionalLanguages"></a> []({{{1)
-#   [Requesting Support for Additional Languages &#9650;](#___top "click to go to top of document")
+#   [请求对其他语言的支持 &#9650;](#___top "click to go to top of document")
 
-If cloc does not recognize a language you are interested in counting,
-create a [GitHub issue](https://github.com/AlDanial/cloc/issues)
-requesting support for your language.  Include this information:
+如果cloc不识别你感兴趣的语言，请创建一个 [GitHub issue](https://github.com/AlDanial/cloc/issues)
+请求支持你的语言.  包括这些信息:
 <ol>
-<li> File extensions associated with the language.  If the language does
-not rely on file extensions and instead works with fixed file names or
-with `#!` style program invocations, explain what those are.</li>
-<li> A description of how comments are defined.</li>
-<li> Links to sample code.</li>
+<li>与该语言相关的文件扩展名。 如果语言不依赖文件扩展名，而是使用固定的文件名或`#!`风格的程序调用，请说明这些文件是什么。</li>
+<li> 关于评论的定义方法的说明。</li>
+<li>示例代码的链接。</li>
 </ol>
 
 [](1}}})
 <a name="reporting_problems"></a> []({{{1)
-#  [Reporting Problems &#9650;](#___top "click to go to top of document")
+#  [报告问题 &#9650;](#___top "click to go to top of document")
 
-If you encounter a problem with cloc, first check to see if
-you're running with the latest version of the tool:
+如果你在使用cloc时遇到问题，首先检查一下你是否有运行最新版本的工具:
 <pre>
   cloc --version
 </pre>
@@ -2775,22 +2673,19 @@ That means providing
 <li> the code you are counting (URL to a public git repo or zip file or
 tar file, et cetera)</li>
 </ol>
-The last item is generally problematic.  If the code base is
-proprietary or amounts to more than a few dozen kilobytes,
-you'll need to try to reconstruct similar inputs or demonstrate
-the problem with an existing public code base.
+最后一项一般是有问题的.  
+如果代码库是专有的，或者代码库的数量超过了几十千字节.
+你需要尝试重构类似的输入，或者用现有的公共代码库来证明问题.
 
-Problem reports that cannot be reproduced will be ignored and
-eventually closed.
+无法复制的问题报告将被忽略并最终关闭.
 
 [](1}}})
 <a name="Acknowledgments"></a> []({{{1)
-#   [Acknowledgments &#9650;](#___top "click to go to top of document")
-[Wolfram Rösler](https://github.com/wolframroesler) provided most of the code examples in the test suite.
-These examples come from his [Hello World collection](http://helloworldcollection.de/).
+##  [致谢 &#9650;](#___top "click to go to top of document")
+[Wolfram Rösler](https://github.com/wolframroesler) 在测试套件中提供了大部分的代码示例.
+这些例子来自于他的 [Hello World collection](http://helloworldcollection.de/).
 
-Ismet Kursunoglu found errors with the MUMPS counter and provided
-access to a computer with a large body of MUMPS code to test cloc.
+Ismet Kursunoglu发现了MUMPS计数器的错误，并提供了一台有大量MUMPS代码的计算机来测试CLOC。.
 
 Tod Huggins gave helpful suggestions for the Visual Basic filters.
 
@@ -2911,6 +2806,6 @@ Corporation.
 
 [](1}}})
 <a name="Copyright"></a> []({{{1)
-#   [Copyright &#9650;](#___top "click to go to top of document")
+##   [版权声明 &#9650;](#___top "click to go to top of document")
 Copyright (c) 2006-2018, [Al Danial](https://github.com/AlDanial)
 [](1}}})
