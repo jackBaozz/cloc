@@ -3,7 +3,7 @@
 *Count Lines of Code*
 
 * * *
-cloc counts blank lines, comment lines, and physical lines of source code in many programming languages.
+cloc 计算许多编程语言中的空行、注释行和源代码的物理行.
 
 Latest release:  v1.84 (September 22, 2019)
 
@@ -45,30 +45,17 @@ at http://cloc.sourceforge.net/ since August 2006.
 <a name="Quick_Start"></a>      []({{{1)
 # [Quick Start &#9650;](#___top "click to go to top of document")
 
-Step 1:  Download cloc (several methods, see below) or run cloc's 
-[docker image](#Docker-1).  The Windows executable has no requirements.
-The source version of cloc requires a Perl interpreter, and the
-Docker version of cloc requires a Docker installation.
-````
-下载cloc（几种方法，见下文）或运行cloc的 
+Step 1:  下载cloc（几种方法，见下文）或运行cloc的 
 [docker image](#Docker-)。 Windows的可执行文件没有任何要求。
 cloc的源代码版本需要一个Perl解释器，而Docker版本的cloc需要安装Docker。
-````
 
-Step 2:  Open a terminal (`cmd.exe` on Windows).
 
-Step 3:  Invoke cloc to count your source files, directories, archives,
-or git commits.
-The executable name differs depending on whether you use the
-development source version (`cloc`), source for a
-released version (`cloc-1.82.pl`) or a Windows executable
-(`cloc-1.82.exe`).  On this page, `cloc` is the generic term
-used to refer to any of these.
-````
-调用cloc来统计你的源文件、目录、存档或 git 提交。
+Step 2:  打开一个终端 (`cmd.exe` on Windows).
+
+Step 3:  调用cloc来统计你的源文件、目录、存档或 git 提交。
 可执行的名称不同，这取决于你是否使用开发源码版本cloc、源码为一个发布的版本 cloc-1.82.pl 或 Windows的可执行文件cloc-1.82.exe。 
-本页中的 cloc是通用术语。用于指代其中的任何一个。
-````
+本页中的 cloc是通用术语。用于指代其中的任何一个.
+
 
 ** 一个文件 **
 <pre>
