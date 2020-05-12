@@ -1180,7 +1180,7 @@ zsh                        (zsh)
 
 上面的列表可以通过使用`--read-lang-def`或`--force-lang-def`选项从一个文件中读取语言定义来定制。
 
-These file extensions map to multiple languages:
+这些文件扩展名映射到多种语言:
 
 *   `cl`  files could be Lisp or OpenCL
 *   `cls` files could be Visual Basic, TeX or Apex Class
@@ -1994,19 +1994,14 @@ Table **t**:
 
 让我们重复一下Perl、Python、SQLite、MySQL和PostgreSQL tarballs的代码计数示例，如所示。
 [Combine Reports](#combine_reports)
-example above, this time
-using the SQL output options and the
+上面的例子，这次使用SQL输出选项和
 [SQLite](http://www.sqlite.org/)
-database engine.
+数据库引擎.
 
-The `--sql` switch tells cloc to generate output in the form
-of SQL table `create` and `insert` commands.  The switch takes
-an argument of a file name to write these SQL statements into, or,
-if the argument is 1 (numeric one), streams output to STDOUT.
-Since the SQLite command line program, `sqlite3`, can read
-commands from STDIN, we can dispense with storing SQL statements to
-a file and use `--sql 1` to pipe data directly into the
-SQLite executable:
+`--sql`开关告诉cloc生成输出的形式为SQL表的 `create` and `insert`命令的执行情况.  
+这个开关需要一个文件名的参数来写入这些SQL语句，或者，如果参数为1(数值)，则将输出流向STDOUT.
+Since the SQLite 命令行程序, `sqlite3`, 可以从STDIN读取命令, 
+我们可以不需要将SQL语句存储到文件中，而是使用`--sql 1`直接将数据传输到SQLite可执行文件中:
 
 <pre>
 cloc --sql 1 --sql-project mariadb mariadb-server-10.1.zip | sqlite3 code.db
