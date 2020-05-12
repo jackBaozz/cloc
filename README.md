@@ -192,7 +192,7 @@ SUM:                            39           1564           1365           3945
 <a name="Overview"></a>      []({{{1)
 # [综述 &#9650;](#___top "click to go to top of document")
 
-Translations:
+翻译:
 [Arabic](http://www.garciniacambogiareviews.ca/translations/aldanial-cloc/),
 [Armenian](http://students.studybay.com/?p=34),
 [Belarussian](http://www.besteonderdelen.nl/blog/?p=5426),
@@ -208,13 +208,13 @@ Translations:
 []( [Ukrainian](http://blog.kudoybook.com/cloc/) )
 
 cloc counts blank lines, comment lines, and physical lines of source
-code in [many programming languages](#Languages). Given two versions of
-a code base, cloc can compute differences in blank, comment, and source
-lines. It is written entirely in Perl with no dependencies outside the
-standard distribution of Perl v5.6 and higher (code from some external
+code in [many programming languages](#Languages). 
+给定一个代码库的两个版本，cloc可以计算出空行、注释和源行的差别. 
+它完全是用Perl编写的，没有任何外部的依赖关系.
+标准版Perl v5.6及以上版本 (code from some external
 modules is [embedded within
-cloc](https://github.com/AlDanial/cloc#regexp_common)) and so is
-quite portable. cloc is known to run on many flavors of Linux, FreeBSD,
+cloc](https://github.com/AlDanial/cloc#regexp_common)) 而且颇为便携. 
+cloc可以运行在许多流行的Linux系统上, FreeBSD,
 NetBSD, OpenBSD, Mac OS X, AIX, HP-UX, Solaris, IRIX, z/OS, and Windows.
 (To run the Perl source version of cloc on Windows one needs
 [ActiveState Perl](http://www.activestate.com/activeperl) 5.6.1 or
@@ -225,9 +225,9 @@ installed,
 or
 a mingw environment and terminal such as provided by
 [Git for Windows](https://gitforwindows.org/).
-Alternatively one can use the Windows binary of cloc
-generated with [PAR::Packer](http://search.cpan.org/~rschupp/PAR-Packer-1.019/lib/pp.pm)
-to run on Windows computers that have neither Perl nor Cygwin.)
+另外，也可以使用Windows的二进制的cloc
+用 [PAR::Packer](http://search.cpan.org/~rschupp/PAR-Packer-1.019/lib/pp.pm)
+生成的，可以在没有Perl和Cygwin的Windows电脑上运行.)
 
 cloc contains code from David Wheeler's
 [SLOCCount](http://www.dwheeler.com/sloccount/),
@@ -246,7 +246,7 @@ http://softwareestimator.com/IndustryData2.htm.
 ```shell
 docker run --rm -v $PWD:/tmp aldanial/cloc
 ```
-## 通过软件包管理器安装
+## 通过软件包管理器安装cloc
 根据你的操作系统，这些安装方法中的一种可能对你有用（除了Windows的最后两个项目外，其他所有的项目都需要Perl解释器）:
 
     npm install -g cloc                    # https://www.npmjs.com/package/cloc
@@ -338,17 +338,13 @@ subroutines `Install_Regexp_Common()` and `Install_Algorithm_Diff()` ).
 Only three lines are needed from Win32::Autoglob and these are included
 directly in cloc.
 
-Additionally, cloc will use Digest::MD5 to validate uniqueness among
-equally-sized input files if Digest::MD5 is installed locally.
+此外，如果本地安装了Digest::MD5, cloc将使用Digest::MD5来验证同样大小的输入文件之间的唯一性.
 
-A parallel processing option, <tt>--processes=<i>N</i></tt>, was introduced with
-cloc version 1.76 to enable faster runs on multicored machines.  However,
-to use it, one must have the module Parallel::ForkManager installed.
-This module does not work reliably on Windows so parallel processing
-will only work on Unix-like operating systems.
+并行处理选项, <tt>--processes=<i>N</i></tt>, 在CLOC 1.76版本中引入了CLOC，以便在多核机器上实现更快的运行速度.  However,
+要使用它，必须安装了Parallel::ForkManager模块.
+该模块在Windows上不能可靠地工作，因此并行处理只能在类似Unix的操作系统上工作.
 
-The Windows binary is built on a computer that has both Regexp::Common
-and Digest::MD5 installed locally.
+Windows二进制文件是建立在本地安装了Regexp::Common和Digest::MD5的计算机上.
 [](1}}})
 <a name="building_exe"></a> []({{{1)
 # [构建一个Windows可执行文件 &#9650;](#___top "click to go to top of document")
@@ -390,7 +386,7 @@ before passing it to perl2exe; lines 87 and 88 were uncommented:
 理想情况下，没有人需要Windows可执行文件，因为他们的机器上安装了Perl解释器，可以运行cloc源文件。
 但是，在集中管理的企业Windows机器上，这可能会有困难或不可能。
 
-随 cloc 一起分发的 Windows 可执行文件是作为无病毒和无恶意软件的".exe "的最佳努力提供的。
+随 cloc 一起分发的 Windows 可执行文件是作为无病毒和无恶意软件的".exe"的最佳努力提供的。
 我们鼓励您针对该可执行程序运行自己的病毒扫描器，并检查网站https://www.virustotal.com/ .
 最近版本的条目是:
 
