@@ -57,7 +57,7 @@ Step 3:  调用cloc来统计你的源文件、目录、存档或 git 提交。
 本页中的 cloc是通用术语。用于指代其中的任何一个.
 
 
-** 一个文件 **
+**一个文件**
 <pre>
 prompt> cloc hello.c
        1 text file.
@@ -72,7 +72,7 @@ C                                1              0              7              5
 -------------------------------------------------------------------------------
 </pre>
 
-** 一个目录 **
+**一个目录**
 <pre>
 prompt> cloc gcc-5.2.0/gcc/c
       16 text files.
@@ -90,9 +90,9 @@ SUM:                            13           4779           6907          31308
 -------------------------------------------------------------------------------
 </pre>
 
-** 档案馆 **
+**档案馆**
 
-We'll pull cloc's source zip file from GitHub, then count the contents:
+我们将从GitHub上拉出cloc的zip源压缩文件，然后统计内容:
 <pre>
 prompt> wget https://github.com/AlDanial/cloc/archive/master.zip
 
@@ -107,10 +107,10 @@ SUM:                             2            725           1103           8713
 -------------------------------------------------------------------------------
 </pre>
 
-** 一个git仓库，使用一个特定的提交 **
+**一个git仓库，使用一个特定的提交**
 
-This example uses code from
-<a href=https://pypi.python.org/pypi/pudb>PuDB</a>, a fantastic Python debugger.
+这个例子使用的代码来自
+<a href=https://pypi.python.org/pypi/pudb>PuDB</a>, 一个神奇的Python调试器.
 
 <pre>
 prompt> git clone http://git.tiker.net/trees/pudb.git
@@ -136,7 +136,7 @@ SUM:                            34           1538            736           4761
 
 </pre>
 
-** 特定目录的每个子目录 **
+**特定目录的每个子目录**
 
 假设你有一个目录，里面有三个不同的git管理的项目，Project0、Project1和Project2。你可以使用你的shell的循环功能来计算每个项目中的代码。
 This example uses bash:
